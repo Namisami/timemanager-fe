@@ -12,14 +12,14 @@ jobs:
   prepare:
     runs-on: self-hosted
     steps:
-        - name: Checkout code
-          uses: actions/checkout@v4
-          with:
-            ref: main
-        - name: Update to last changes
+        # - name: Checkout code
+        #   uses: actions/checkout@v4
+        #   with:
+        #     ref: main
+        - name: Update to latest changes
           run:
-            sudo git fetch origin
-            sudo git pull origin main
+            git fetch
+            git pull origin main
   build:
     runs-on: self-hosted
     needs: [prepare]
