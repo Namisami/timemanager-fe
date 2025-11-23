@@ -18,8 +18,8 @@ jobs:
             ref: main
         - name: Update to last changes
           run:
-            git fetch origin
-            git pull origin main
+            sudo git fetch origin
+            sudo git pull origin main
   build:
     runs-on: self-hosted
     needs: [prepare]
