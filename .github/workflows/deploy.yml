@@ -13,9 +13,7 @@ jobs:
     runs-on: self-hosted
     steps:
         - name: Checkout and update code
-          run:
-            cd /var/www/timemanager-fe
-            git pull
+          run: cd /var/www/timemanager-fe && git pull
         # - name: Checkout and update code
         #   uses: actions/checkout@v4
         #   with:
