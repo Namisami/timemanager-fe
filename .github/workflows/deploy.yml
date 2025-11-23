@@ -12,16 +12,11 @@ jobs:
   prepare:
     runs-on: self-hosted
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          path: /var/www/timemanager-fe
-
-      - name: Update code
-        working-directory: /var/www/timemanager-fe
-        run: git pull origin main
-        # - name: Checkout and update code
-        #   run: cd /var/www/timemanager-fe && git pull
+        - name: Checkout and update code
+          run: |
+            cd /var/www/timemanager-fe
+            git fetch origin
+            git pull origin main
   build:
     runs-on: self-hosted
     needs: [prepare]
@@ -32,7 +27,9 @@ jobs:
 
         - name: Build React Web
           working-directory: /var/www/timemanager-fe
-          run: npm run build
+          run: |
+            rm -rf dist/
+            npm run build
 
   deploy:
     runs-on: self-hosted
