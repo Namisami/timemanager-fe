@@ -12,14 +12,11 @@ jobs:
   prepare:
     runs-on: self-hosted
     steps:
-        # - name: Checkout code
-        #   uses: actions/checkout@v4
-        #   with:
-        #     ref: main
-        - name: Update to latest changes
-          run:
-            git fetch
-            git pull origin main
+        - name: Checkout and update code
+          uses: actions/checkout@v4
+          with:
+            ref: main
+            fetch-depth: 0
   build:
     runs-on: self-hosted
     needs: [prepare]
