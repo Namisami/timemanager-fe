@@ -9,15 +9,16 @@ on:
     types: [closed]
 
 jobs:
-  build:
-    # if: ${{ github.event_name == 'main' || github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true }}
+  prepare:
     runs-on: self-hosted
     steps:
         - name: Clone repository
           uses: actions/checkout@v4
           with:
             ref: main
-
+  build:
+    runs-on: self-hosted
+    steps:
         - name: Install dependencies
           run: npm install
 
@@ -29,7 +30,7 @@ jobs:
     needs: [build]
     steps:
         - name: Reload nginx
-          run: nginx -s reload
+          run: sudo systemctl reload nginx
 
         # - name: Deploy to server
         #   uses: appleboy/scp-action@v0.1.3
